@@ -1,4 +1,4 @@
-import Starter from './tutorial/03-conditional-rendering/starter/05-short-circuit-examples'
+import Starter from './tutorial/04-project-structure/starter/navbar'
 
 function App() {
   return (
