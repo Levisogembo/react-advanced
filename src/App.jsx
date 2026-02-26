@@ -1,4 +1,4 @@
-import Starter from './tutorial/04-project-structure/starter/navbar'
+import Starter from './tutorial/06-forms/starter/01-controlled-inputs'
 
 function App() {
   return (
