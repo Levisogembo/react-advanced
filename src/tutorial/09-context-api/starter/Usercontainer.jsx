@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { NavbarContext } from './prop drilling/Navbar'
+import { NavbarContext, useAppContext } from './prop drilling/Navbar'
 import { NavlinksContext } from './Navlinks'
 
 const Usercontainer = () => {
     //console.log(props);
-    const { user, logout } =  useContext(NavbarContext)
+    const { user, logout } =  useAppContext()
     const tester = useContext(NavlinksContext)
     console.log(tester);
     

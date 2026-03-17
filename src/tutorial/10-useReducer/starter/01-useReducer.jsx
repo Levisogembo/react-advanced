@@ -1,15 +1,42 @@
 import React from 'react';
 import { data } from '../../../data';
+import { useReducer } from 'react';
+import { act } from 'react';
+
+const defaultState = { people: data }
+
+const CLEAR_LIST = 'CLEAR_LIST'
+const RESET_LIST = 'RESET_LIST'
+const REMOVE_LIST = 'REMOVE_LIST'
+
+const reducer = (state, action) => {
+  if (action.type === CLEAR_LIST) {
+    return { ...state, people: [] }
+  }
+  //return state
+  throw new Error(`No matching "${action.type}" - action type`)
+}
+
 const ReducerBasics = () => {
-  const [people, setPeople] = React.useState(data);
+
+  const [state, dispatch] = useReducer(reducer, defaultState)
+  console.log(state);
+
+
+  //const [people, setPeople] = React.useState(data);
 
   const removeItem = (id) => {
-    let newPeople = people.filter((person) => person.id !== id);
-    setPeople(newPeople);
+    
+    // let newPeople = people.filter((person) => person.id !== id);
+    // setPeople(newPeople);
   };
+  const clearList = () => {
+    dispatch({ type: CLEAR_LIST })
+  }
+  const resetItems = () => dispatch({type:'robot'})
   return (
     <div>
-      {people.map((person) => {
+      {state.people.map((person) => {
         const { id, name } = person;
         return (
           <div key={id} className='item'>
@@ -18,13 +45,19 @@ const ReducerBasics = () => {
           </div>
         );
       })}
-      <button
+      {state.people.length ? <button
         className='btn'
         style={{ marginTop: '2rem' }}
-        onClick={() => setPeople([])}
+        onClick={clearList}
       >
         clear items
-      </button>
+      </button> : <button
+        className='btn'
+        style={{ marginTop: '2rem' }}
+        onClick={resetItems}
+      >
+        Reset
+      </button>}
     </div>
   );
 };
